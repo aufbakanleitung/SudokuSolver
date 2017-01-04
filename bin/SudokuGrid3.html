@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Sudorky</title>
+    <style>
+        table { border-collapse: collapse; font-family: Calibri, sans-serif; }
+        colgroup, tbody { border: solid medium; }
+        td { border: solid thin; height: 2.5em; width: 2.5em; text-align: center; padding: 0; }
+        table[class^="sudoku"] {
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<table class="sudoku">
+    <caption>Sudoku solve visualizer</caption>
+    <colgroup><col><col><col>
+    <colgroup><col><col><col>
+    <colgroup><col><col><col>
+    <tbody>
+<tr> <td id="00" bgcolor="#7fffd4"> <td id="01"> <td id="02"> <td id="03"> <td id="04"> <td id="05"> <td id="06"> <td id="07"> <td id="08">
+<tr> <td id="10" bgcolor="#7fffd4"> <td id="11"> <td id="12"> <td id="13"> <td id="14"> <td id="15"> <td id="16"> <td id="17"> <td id="18">
+<tr> <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>
+    <tbody>
+<tr> <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>
+<tr> <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>
+<tr> <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>
+    <tbody>
+<tr> <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>
+<tr> <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>
+<tr> <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>
+</table>
+
+<body>
+
+<button id="btn1">Change color</button>
+</body>
+<script>
+//    for (var i = 10; i < 18; i++) {
+//        $(function(){(i).html("4");});
+//    }
+
+
+    $(function() {
+        $("btn1").on('click', function(){
+            $('#00').css('background-color', '#223');
+        });
+
+        $('#01').html("4")
+
+        var data = [
+            1, 0, 3, 6, 0, 4, 7, 0, 9, // 0x0
+            0, 2, 0, 0, 9, 0, 0, 1, 0, // 0x1
+            7, 0, 0, 0, 0, 0, 0, 0, 6, // 0x2
+            2, 0, 4, 0, 3, 0, 9, 0, 8, // 1x0
+            1, 1, 1, 0, 0, 0, 0, 0, 0, // 1x1
+            5, 0, 0, 9, 0, 7, 0, 0, 1, // 1x2
+            6, 0, 0, 0, 5, 0, 0, 0, 2, // 2x0
+            0, 0, 0, 0, 7, 0, 0, 0, 0, // 2x1
+            9, 0, 0, 8, 0, 2, 0, 0, 5  // 2x2
+        ];
+
+
+        $('table[class^="sudoku"]').each(function (index, grid) {
+            populateGrid($(grid), data);
+        });
+    });
+
+
+//    grid.find('td').each(function (){
+//        $(td).html("4");
+//    }
+
+    function populateGrid(grid, data) {
+        grid.find('td').each(function (index, td) {
+            $(td).text(data[index] || '');
+        });
+    }
+</script>
+</html>
